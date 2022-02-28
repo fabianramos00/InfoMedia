@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Pregunta14.css">
+    <title>Infomedia</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="form-card">
+            <h2>Consulta Ip2Geo</h3>
+            <form id="geoipForm" method="post">
+                <input class="inputText" type="text" name="ipAddress" id="ipAddress" placeholder="IP Address (xxx.xxx.xxx.xxx)" required>
+                <input class="inputText" type="number" name="licenseKey" id="licenseKey" placeholder="License Key" required>
+                <input class="form-button" type="submit" id="submitButton" name="submitButton" value="Submit">
+            </form>
+        </div>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TimeZone</th>
+                        <th>HasDaylightSavings</th>
+                        <th>Organization</th>
+                        <th>RegionName</th>
+                        <th>StateProvince</th>
+                        <th>Certainty</th>
+                        <th>Country</th>
+                        <th>AreaCode</th>
+                        <th>Latitude</th>
+                        <th>City</th>
+                        <th>CountryCode</th>
+                        <th>Longitude</th>
+                    </tr>
+                </thead>
+                <tbody id="table-content">
+    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(() => {
+
+            $("#geoipForm").submit((e) => {
+                e.preventDefault();
+                const form = new FormData(e.target);
+                const formProps = Object.fromEntries(form);
+                const url = `http://localhost:8080/geoip/?ipAddress=${formProps.ipAddress}&licenseKey=${formProps.licenseKey}`;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: (response) => {
+                        var tableContent = '<tr>';
+                        $.each(response.data, function (i, item) {
+                            console.log(i, item)
+                            tableContent += '<td>' + item + '</td>';
+                        });
+                        tableContent += '</tr>';
+                        document.getElementById("table-content").innerHTML = tableContent;
+                        alert(response.message);
+                        $("#geoipForm")[0].reset();
+                    },
+                    error: (response) => {
+                        alert(response.message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

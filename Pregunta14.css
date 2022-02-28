@@ -1,0 +1,76 @@
+table {
+    font-family: arial;
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    height: 100%;
+}
+
+th, td {
+    padding: 7px 20px;
+    border-color: black;
+    border-style: solid;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+thead {
+    background: rgba(0, 0, 248, 0.89);
+}
+
+th {
+    color: white;
+    height: 30px;
+}
+
+/* Other styles */
+
+.content {
+    margin: 0 60px;
+}
+
+.form-card {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+form {
+    margin: 8px 0;
+}
+
+.inputText {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 5px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+}
+
+.form-button {
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.form-button:hover {
+    background-color: gray;
+}
+
+.table-card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 5px;
+    padding: 20px;
+    border-radius: 5px;
+    height: 300px;
+}
