@@ -32,7 +32,7 @@ public class APIController {
         try {
             LocalDate requestDate = LocalDate.parse(textDate, dtf);
             long daysBetween = ChronoUnit.DAYS.between(requestDate, LocalDate.now());
-            return ResponseHandler.generateResponse(String.valueOf(daysBetween), HttpStatus.OK, null);
+            return ResponseHandler.generateResponse("La cantidad de días entre la fecha ingresada y la actual es: " + daysBetween, HttpStatus.OK, daysBetween);
         } catch (DateTimeParseException e) {
             return ResponseHandler.generateResponse("Formato de fecha incorrecto", HttpStatus.BAD_REQUEST, null);
         }
